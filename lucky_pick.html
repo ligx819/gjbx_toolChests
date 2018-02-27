@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>幸运选号</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/tool_chests.css">
+    <style>
+        html, body {
+            background: #D83F42;
+        }
+    </style>
+</head>
+<body>
+<div class="container xyxh">
+    <div class="top">
+        <div class="top_menu">
+            <ul class="one_ul">
+                <li class="active"><span>双色球</span></li>
+                <li class="boxshadow"><span>3D</span></li>
+                <li class="boxshadow"><span>七乐彩</span></li>
+            </ul>
+            <ul class="two_ul">
+                <li class="active">生肖</li>
+                <li>星座</li>
+                <li>血型</li>
+                <li>QQ号</li>
+                <li>手机号</li>
+            </ul>
+        </div>
+        <div id="turntable">
+            <span class="null_top"></span>
+            <span class="null_top"></span>
+            <div class="qq_phone">
+                <p class="qq_phone_top">请输入您的QQ号</p>
+                <p class="qq_phone_cont"><input type="text" id="input"></p>
+            </div>
+            <img id="scream" src="./images/zhuanpan.png">
+            <div class="img_null"></div>
+
+            <div class="null_img">
+                <img id="animal_01_0" src="./images/animal/animal_01_0.png" width="40">
+                <img id="animal_01_1" src="./images/animal/animal_01_1.png" width="40">
+                <img id="animal_01_2" src="./images/animal/animal_01_2.png" width="40">
+                <img id="animal_01_3" src="./images/animal/animal_01_3.png" width="40">
+                <img id="animal_01_4" src="./images/animal/animal_01_4.png" width="40">
+                <img id="animal_01_5" src="./images/animal/animal_01_5.png" width="40">
+                <img id="animal_01_6" src="./images/animal/animal_01_6.png" width="40">
+                <img id="animal_01_7" src="./images/animal/animal_01_7.png" width="40">
+                <img id="animal_01_8" src="./images/animal/animal_01_8.png" width="40">
+                <img id="animal_01_9" src="./images/animal/animal_01_9.png" width="40">
+                <img id="animal_01_10" src="./images/animal/animal_01_10.png" width="40">
+                <img id="animal_01_11" src="./images/animal/animal_01_11.png" width="40">
+
+                <img id="animal_02_0" src="./images/animal/animal_02_0.png" width="40">
+                <img id="animal_02_1" src="./images/animal/animal_02_1.png" width="40">
+                <img id="animal_02_2" src="./images/animal/animal_02_2.png" width="40">
+                <img id="animal_02_3" src="./images/animal/animal_02_3.png" width="40">
+                <img id="animal_02_4" src="./images/animal/animal_02_4.png" width="40">
+                <img id="animal_02_5" src="./images/animal/animal_02_5.png" width="40">
+                <img id="animal_02_6" src="./images/animal/animal_02_6.png" width="40">
+                <img id="animal_02_7" src="./images/animal/animal_02_7.png" width="40">
+                <img id="animal_02_8" src="./images/animal/animal_02_8.png" width="40">
+                <img id="animal_02_9" src="./images/animal/animal_02_9.png" width="40">
+                <img id="animal_02_10" src="./images/animal/animal_02_10.png" width="40">
+                <img id="animal_02_11" src="./images/animal/animal_02_11.png" width="40">
+
+                <img id="constellation_01_0" src="./images/constellation/constellation_01_0.png" width="40">
+                <img id="constellation_01_1" src="./images/constellation/constellation_01_1.png" width="40">
+                <img id="constellation_01_2" src="./images/constellation/constellation_01_2.png" width="40">
+                <img id="constellation_01_3" src="./images/constellation/constellation_01_3.png" width="40">
+                <img id="constellation_01_4" src="./images/constellation/constellation_01_4.png" width="40">
+                <img id="constellation_01_5" src="./images/constellation/constellation_01_5.png" width="40">
+                <img id="constellation_01_6" src="./images/constellation/constellation_01_6.png" width="40">
+                <img id="constellation_01_7" src="./images/constellation/constellation_01_7.png" width="40">
+                <img id="constellation_01_8" src="./images/constellation/constellation_01_8.png" width="40">
+                <img id="constellation_01_9" src="./images/constellation/constellation_01_9.png" width="40">
+                <img id="constellation_01_10" src="./images/constellation/constellation_01_10.png" width="40">
+                <img id="constellation_01_11" src="./images/constellation/constellation_01_11.png" width="40">
+            </div>
+            <canvas id="canvas" width="260" height="260">抱歉！您的浏览器不支持canvas</canvas>
+            <a id="btn1" href="javascript:void (0);"><img src="./images/red_anniu.png" alt="" width="80"></a>
+        </div>
+        <p class="zushu">我需要 <span class="zushu_num active">1</span><span class="zushu_num">2</span><span
+                class="zushu_num">3</span><span class="zushu_num">4</span><span class="zushu_num">5</span> 组号码</p>
+        <p class="get_lucky_num"><a id="btn2" href="javascript:void (0);"><img src="./images/get_luckyNum.png"
+                                                                               alt=""></a></p>
+        <p class="lucky_record"><img src="./images/lucky_record.png" alt=""></p>
+        <p class="tishi">温馨提示：每天24:00清零记录哦！</p>
+        <div class="xyxh_record">
+            <div class="record_cont shsq">
+                <p class="record_cont_top">双色球</p>
+                <div class="record_all_cont"></div>
+            </div>
+            <div class="record_cont 3d">
+                <p class="record_cont_top">3D</p>
+                <div class="record_all_cont"></div>
+            </div>
+            <div class="record_cont 7lc">
+                <p class="record_cont_top">七乐彩</p>
+                <div class="record_all_cont"></div>
+            </div>
+        </div>
+    </div>
+    <div id="modal">
+        <div id="dialog">
+            <p class="dialog_top">您的幸运号码是 <span class="close">&times;</span></p>
+            <p class="shadow"></p>
+            <ul class="dialog_ball">
+
+            </ul>
+            <p class="dialog_tishi">小提示：当天幸运记录会保留在页面下方哦！</p>
+        </div>
+        <p class="before_result">正在为您选号 <span class="ellipsis"></span></p>
+    </div>
+</div>
+
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery.cookie.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/respond.min.js"></script>
+<script src="./js/alertify.min.js"></script>
+<script src="js/tool_chests.js"></script>
+<script>
+    $(function () {
+        emulatorLucky.init();
+    })
+</script>
+</body>
+</html>

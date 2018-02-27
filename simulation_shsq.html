@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>模拟开奖</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/tool_chests.css">
+</head>
+<body>
+<audio  preload="auto" id="mybackgroundAudio">
+    <source src="./audio/yao.mp3" type="audio/mpeg" />
+</audio>
+<div class="container mnkj">
+    <div class="top_lottery">
+        <ul class="top_color_name">
+            <li class="active">双色球</li>
+            <li>福彩3D</li>
+            <li>七乐彩</li>
+        </ul>
+        <div id="emulator" class="emulator">
+            <img src="./images/kj_shsq.png">
+            <div class="billboard"></div>
+        </div>
+        <div class=""></div>
+        <div class="action"><a href="javascript:emulatorSSQ.start();" class="button"><img src="./images/kshyj.png" alt=""></a></div>
+        <div class="clear"></div>
+    </div>
+    <div class="lottery_record">
+        <div class="record_img text-center">
+            <img src="./images/lottery_record.png" alt="">
+        </div>
+        <p>温馨提示：每天24:00清零记录哦！</p>
+        <div class="record_cont mn_shsq">
+            <p class="record_cont_top">双色球</p>
+            <ul class="record_cont_cont">
+
+            </ul>
+        </div>
+        <div class="record_cont mn_fc3d">
+            <p class="record_cont_top">福彩3D</p>
+            <ul class="record_cont_cont">
+
+            </ul>
+        </div>
+        <div class="record_cont mn_7lc">
+            <p class="record_cont_top">七乐彩</p>
+            <ul class="record_cont_cont">
+
+            </ul>
+        </div>
+    </div>
+    <div id="modal"></div>
+</div>
+
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery.cookie.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/respond.min.js"></script>
+<script src="./js/alertify.min.js"></script>
+<script src="./js/jquery.transit.js"></script>
+<script src="js/tool_chests.js"></script>
+<script>
+    $(function () {
+        if (window.sessionStorage.initName){
+            var initName = window.sessionStorage.getItem('initName');
+            whichName(initName);
+        }else {
+            emulatorSSQ.init();
+        }
+        $('.record_cont_cont').html('');
+        var mn_balls;
+        function getCookie(cookieName,colorName) {
+            if ($.cookie(cookieName)){
+                var o = $.cookie(cookieName);
+                mn_balls = JSON.parse(o);
+                for(var i = 0;i < mn_balls.length;i++){
+                    var $node = $('<li><span class="record_time">' + mn_balls[i].time + '</span></li>');
+                    for(var j = 0;j < mn_balls[i].balls.length;j++){
+                        if(j == 7 || (j == 6 && colorName === 'mn_shsq')){
+                            $node.append($('<span class="blue">' + mn_balls[i].balls[j] + '</span>'));
+                        }else {
+                            $node.append($('<span class="red">' + mn_balls[i].balls[j] + '</span>'));
+                        }
+                    }
+                    $node.prependTo($('.record_cont.'+colorName+' .record_cont_cont'));
+                }
+            }
+        }
+        getCookie('mn_7lc_ball','mn_7lc');
+        getCookie('mn_fc3d_ball','mn_fc3d');
+        getCookie('mn_shsq_ball','mn_shsq');
+    });
+    $('.action .button').bind('click',function () {
+        $('.billboard').html('');
+        $('#modal').show().css('background','none');
+    });
+    function whichName(obj) {
+        switch (obj){
+            case '双色球':
+                $('#emulator img').attr('src','./images/kj_shsq.png').css({'width':'180px','position': 'relative','left':'70px'});
+                $('.action a').attr('href','javascript:emulatorSSQ.start()');
+                $('#emulator').children('.group,.ballBox').remove();
+                $('.top_color_name li:eq(0)').addClass('active').siblings().removeClass('active');
+                window.sessionStorage.setItem('initName','双色球');
+                emulatorSSQ.init();
+                break;
+            case '福彩3D':
+                $('#emulator img').attr('src','./images/kj_3D.png').css({'width':'240px','position': 'relative','left':'45px'});
+                $('.action a').attr('href','javascript:emulator3D.start()');
+                $('#emulator').children('.group,.ballBox').remove();
+                $('.top_color_name li:eq(1)').addClass('active').siblings().removeClass('active');
+                window.sessionStorage.setItem('initName','福彩3D');
+                emulator3D.init();
+                break;
+            case '七乐彩':
+                $('#emulator img').attr('src','./images/kj_7lc.png').css({'width':'240px','position': 'relative','left':'45px'});
+                $('.action a').attr('href','javascript:emulator7lecai.start()');
+                $('#emulator').children('.group,.ballBox').remove();
+                $('.top_color_name li:eq(2)').addClass('active').siblings().removeClass('active');
+                window.sessionStorage.setItem('initName','七乐彩');
+                emulator7lecai.init();
+                break;
+        }
+    }
+    $('.top_color_name li').bind('click',function () {
+        $('.billboard').html('');
+        $('.chosed').remove();
+        var __ = $(this);
+        $(this).addClass('active').siblings().removeClass('active');
+        whichName(__.html());
+    });
+</script>
+</body>
+</html>
